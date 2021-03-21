@@ -1,4 +1,0 @@
-{
-  "jwtPrivat": "test",
-  "dbUrl": "mongodb://localhost/my-app"
-}
