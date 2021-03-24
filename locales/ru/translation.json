@@ -1,0 +1,6 @@
+{
+  "Errors": {
+    "wrongLoginOrPassword": "Неправильный логин или пароль",
+    "userAlreadyExists": "Такой пользователь уже существует"
+  }
+}

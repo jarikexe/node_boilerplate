@@ -1,16 +1,30 @@
-const express = require('express')
-const router = require('./routes')
-var bodyParser = require('body-parser')
-const mongoos = require('mongoose')
+import express from 'express';
+import expressAsyncErrors from 'express-async-errors'
+import winston from 'winston'
+import i18nextMiddleware from "i18next-express-middleware"
+import i18next from './middleware/i18n.js'
+import router from './routes/index.js'
+import bodyParser from 'body-parser'
+import mongoos from 'mongoose'
+import errorHandler from './middleware/errorHandler.js'
+import config from 'config'
+
 const app = express()
+
+app.use(i18nextMiddleware.handle(i18next))
+process.on('uncaughtException', (ex) => {
+  winston.error(ex.message, ex);
+})
+process.on('unhandledRejection', (ex) => {
+  winston.error(ex.message, ex);
+})
 const port = process.env.PORT | 5000;
+winston.add(new winston.transports.File({filename: config.get('logFile')}))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
-mongoos.connect('mongodb://localhost/my-app')
-  .then(console.log('DB connected'))
-  .catch(error => console.error(error));
+mongoos.connect(config.get('dbUrl'))
 app.use('/api/v1', router);
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+if(process.env === 'production'){
+  app.use(errorHandler);
+}
+app.listen(port);

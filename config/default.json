@@ -1,4 +1,5 @@
 {
   "jwtPrivat": "",
-  "dbUrl": "mongodb://localhost/my-app"
+  "dbUrl": "mongodb://localhost/my-app",
+  "logFile": "logs/logfile.log"
 }

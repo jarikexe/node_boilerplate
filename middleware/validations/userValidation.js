@@ -1,6 +1,6 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
-module.exports.userValidation = function(req, res, next) {
+export const userValidation = function(req, res, next) {
   const userSchema = Joi.object({
     email: Joi.string().email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
         .min(5)

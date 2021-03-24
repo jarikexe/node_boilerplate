@@ -1,6 +1,6 @@
-const mongoos = require('mongoose')
-const jwt = require('jsonwebtoken')
-const config = require('config')
+import mongoos from 'mongoose'
+import jwt from 'jsonwebtoken'
+import config from 'config'
 
 const UserSchema = new mongoos.Schema({
   email: {
@@ -24,4 +24,4 @@ UserSchema.methods.generateAuthTocken = function() {
 
 const User = mongoos.model('User', UserSchema);
 
-module.exports = User;
+export default User;
