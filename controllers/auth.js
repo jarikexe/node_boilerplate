@@ -9,5 +9,12 @@ export const auth = async function(req, res){
   const result = await bcrypt.compare(password, user.password);
   if(!result) return res.status(400).send(req.t('Errors.wrongLoginOrPassword'));
   const token = user.generateAuthTocken();
-  res.header('x-auth-token', token).send(user);
+  res.set({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Authorization',
+    'Access-Control-Expose-Headers': 'X-Requested-With,content-type, Authorization'
+  });
+  res.header('Authorization', `Bearer ${token}`)
+  .send(user);
 } 

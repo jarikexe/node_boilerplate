@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import config from 'config'
 
 export const auth = function(req, res, next) {
-  const token = req.header('x-auth-token')
+  const token = req.header('Authorization').replace('Bearer ','');
   if(!token) return res.status(401).send("Access denied no token provided")
   try{
     const decoded = jwt.verify(token, config.get('jwtPrivat'))

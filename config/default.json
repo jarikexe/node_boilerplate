@@ -1,5 +1,6 @@
 {
   "jwtPrivat": "",
-  "dbUrl": "mongodb://localhost/my-app",
-  "logFile": "logs/logfile.log"
+  "dbUrl": "",
+  "logFile": "logs/logfile.log",
+  "env": "production"
 }
