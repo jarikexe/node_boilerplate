@@ -1,0 +1,7 @@
+{
+  "hello": "1",
+  "Errors": {
+    "wrongLoginOrPassword": "Email or password is incorrect",
+    "userAlreadyExists": "User already register"
+  }
+}

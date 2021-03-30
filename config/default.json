@@ -1,0 +1,6 @@
+{
+  "jwtPrivat": "",
+  "dbUrl": "",
+  "logFile": "logs/logfile.log",
+  "env": "production"
+}
